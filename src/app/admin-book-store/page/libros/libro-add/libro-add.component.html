@@ -1,0 +1,42 @@
+<h3>Nuevo Libro</h3>
+
+<form (ngSubmit)="create()">
+    <div>
+      <label for="titulo">Titulo</label>
+      <input id="titulo"
+             type="text"
+             placeholder="Titulo"
+             name="titulo"
+             [(ngModel)]="libro.titulo">
+    </div>
+  <div>
+    <label for="precio">Precio</label>
+    <input id="precio"
+           type="text"
+           placeholder="Precio"
+           name="precio"
+           [(ngModel)]="libro.precio">
+  </div>
+  <div>
+    <label for="precio">Archivo PDF</label>
+    <input id="rutaArchivo"
+           type="file"
+           name="rutaArchivo"
+           accept="application/pdf"
+           (change)="uploadFile($event,'rutaArchivo')"
+    >
+    <div *ngIf="libro.rutaArchivo">El archivo se subio</div>
+    <img [src]="urlImagen" width="120" *ngIf="urlImagen">
+  </div>
+  <div>
+    <label for="precio">Imagen de portada</label>
+    <input id="rutaImagen"
+           type="file"
+           accept="image/*"
+           name="rutaImagen"
+           (change)="uploadFile($event,'rutaImagen')"
+
+    >
+  </div>
+  <button>Gruardar</button>
+</form>

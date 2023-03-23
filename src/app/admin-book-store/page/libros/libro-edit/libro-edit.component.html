@@ -1,0 +1,21 @@
+<h3>Editar Libro</h3>
+
+<form *ngIf="libro" (ngSubmit)="update()">
+  <div>
+    <label for="titulo">Titulo</label>
+    <input id="titulo"
+           type="text"
+           placeholder="Titulo"
+           name="titulo"
+           [(ngModel)]="libro.titulo">
+  </div>
+  <div>
+    <label for="precio">Precio</label>
+    <input id="precio"
+           type="text"
+           placeholder="Precio"
+           name="precio"
+           [(ngModel)]="libro.precio">
+  </div>
+  <button>Gruardar</button>
+</form>

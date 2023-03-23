@@ -1,0 +1,26 @@
+<h3>Lista de libros</h3>
+
+<a href="add">Nuevo Libro</a>
+<table>
+  <thead>
+  <tr>
+    <td>Id</td>
+    <td>TITULO</td>
+    <td>PRECIO</td>
+    <td>F CREACION</td>
+    <td>F ACTUALIZACION</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of data">
+    <td>{{item.id}}</td>
+    <td>{{item.titulo}}</td>
+    <td>{{item.precio}}</td>
+    <td>{{item.fechaCreacion | date}}</td>
+    <td>
+      <button type="button" [routerLink]="[item.id]">Editar</button>
+      <button type="button" (click)="delete(item)">Eliminar</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
