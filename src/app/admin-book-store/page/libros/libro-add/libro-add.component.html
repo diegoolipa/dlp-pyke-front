@@ -1,42 +1,70 @@
 <h3>Nuevo Libro</h3>
 
-<form (ngSubmit)="create()">
-    <div>
-      <label for="titulo">Titulo</label>
-      <input id="titulo"
-             type="text"
-             placeholder="Titulo"
-             name="titulo"
-             [(ngModel)]="libro.titulo">
-    </div>
-  <div>
-    <label for="precio">Precio</label>
-    <input id="precio"
-           type="text"
-           placeholder="Precio"
-           name="precio"
-           [(ngModel)]="libro.precio">
-  </div>
-  <div>
-    <label for="precio">Archivo PDF</label>
-    <input id="rutaArchivo"
-           type="file"
-           name="rutaArchivo"
-           accept="application/pdf"
-           (change)="uploadFile($event,'rutaArchivo')"
-    >
-    <div *ngIf="libro.rutaArchivo">El archivo se subio</div>
-    <img [src]="urlImagen" width="120" *ngIf="urlImagen">
-  </div>
-  <div>
-    <label for="precio">Imagen de portada</label>
-    <input id="rutaImagen"
-           type="file"
-           accept="image/*"
-           name="rutaImagen"
-           (change)="uploadFile($event,'rutaImagen')"
 
-    >
+<div class="row">
+
+
+  <div class="col-md-8">
+    <form (ngSubmit)="create()">
+      <mat-form-field appearance="outline" class="d-block">
+        <mat-label>Titulo</mat-label>
+        <input id="titulo"
+               matInput
+               type="text"
+
+               placeholder="Titulo"
+               name="titulo"
+               [(ngModel)]="libro.titulo">
+        <!--      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="d-block">
+        <mat-label>Precio</mat-label>
+        <input id="precio"
+               type="text"
+               matInput
+               placeholder="Precio"
+               name="precio"
+               [(ngModel)]="libro.precio">
+        <!--      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>-->
+      </mat-form-field>
+
+      <div class="d-block">
+        <label for="precio">Archivo PDF</label>
+        <button type="button" mat-raised-button (click)="rutaArchivoInputFile.click()"> Seleccionar archivo</button>
+        <input #rutaArchivoInputFile
+               type="file"
+               class="d-none"
+               name="rutaArchivo"
+               accept="application/pdf"
+               (change)="uploadFile($event,'rutaArchivo')"
+        >
+        <div *ngIf="libro.rutaArchivo">El archivo se subio</div>
+      </div>
+
+      <div class="d-block">
+        <label for="precio">Imagen de portada</label>
+        <button type="button" mat-raised-button (click)="rutaImagenInputFile.click()"> Seleccionar Imagen</button>
+
+        <input #rutaImagenInputFile
+               type="file"
+               class="d-none"
+               accept="image/*"
+               name="rutaImagen"
+               (change)="uploadFile($event,'rutaImagen')"
+
+        >
+      </div>
+      <button mat-raised-button color="primary" routerLink="/">Cancelar</button>
+      <button mat-raised-button color="primary">Gruardar</button>
+    </form>
   </div>
-  <button>Gruardar</button>
-</form>
+  <div class="col-md-4">
+    <img [src]="urlImagen" width="120" *ngIf="urlImagen; else sinImagen" class="w-100 border"
+          >
+    <ng-template #sinImagen>
+      <div style="width: 450px; height: 250px; border: 1px solid lightblue" class="text-center">
+        Sin Imagen
+      </div>
+    </ng-template>
+  </div>
+</div>
